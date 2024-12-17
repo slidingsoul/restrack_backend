@@ -3,7 +3,7 @@ const express = require('express');
 const { Reservation } = require('../models'); // Assuming your models are in ../models
 const { authenticateJWT } = require('../middleware/authenticateJWT.js'); // The middleware to authenticate JWT
 const { authMiddleware } = require('../middleware/authMiddleware.js')
-const { createReservation } = require('../controllers/reservationController');
+const { createReservation, updateReservationStatus, updateReservationDeposit } = require('../controllers/reservationController');
 
 
 const router = express.Router();
@@ -35,5 +35,10 @@ router.get('/my-reservations', authenticateJWT, async (req, res) => {
 });
 
 router.post('/create-new-reservation', authenticateJWT, createReservation)
+
+router.put('/:reservation_id/status', authenticateJWT, updateReservationStatus);
+
+router.put('/:reservation_id/deposit', authenticateJWT, updateReservationDeposit);
+
 
 module.exports = router;

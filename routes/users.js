@@ -3,6 +3,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 const authenticateToken = require('../middleware/auth'); // JWT middleware
+const { regulateTcoin } = require('../controllers/userController'); // Middleware for authentication
+
 const router = express.Router();
 
 // Update user profile (PUT /api/users/me)
@@ -52,5 +54,8 @@ router.put('/me', authenticateToken, async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 });
+
+router.put('/tcoin', authenticateToken, regulateTcoin);
+
 
 module.exports = router;
