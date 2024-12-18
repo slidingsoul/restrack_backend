@@ -122,3 +122,16 @@ The server will run on http://localhost:3000.
   "deposited": true
   }
   ```
+- Cancel Reservation By User
+  - PUT /api/reservations/:reservation_id/cancel-by-user
+  - Requires JWT authentication
+- Cancel Reservation By Mod
+  - PUT /api/reservations/:reservation_id/cancel-by-mod
+  - Requires JWT authentication
+### Menus
+- Recommend menu
+  - PUT /api/menus/:menu_id/recommend
+  - Requires JWT authentication
+- Unrecommend menu
+  - PUT /api/menus/:menu_id/unrecommend
+  - Requires JWT authentication

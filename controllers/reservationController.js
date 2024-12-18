@@ -95,4 +95,55 @@ const updateReservationDeposit = async (req, res) => {
   }
 };
 
-module.exports = { createReservation, updateReservationStatus, updateReservationDeposit };
+const cancelReservationbyUser = async (req, res) => {
+  const { reservation_id } = req.params;
+
+  try {
+    // Find the reservation
+    const reservation = await Reservation.findByPk(reservation_id);
+    if (!reservation) {
+      return res.status(404).json({ error: 'Reservation not found.' });
+    }
+
+    // Update the reservation status to 'cancel' and set the cancelled_by field
+    reservation.status = 'cancelled';
+    reservation.cancelled_by = 'user';
+    await reservation.save();
+
+    return res.status(200).json({
+      message: 'Reservation cancelled by user successfully.',
+      reservation,
+    });
+  } catch (error) {
+    console.error('Error cancelling reservation:', error);
+    return res.status(500).json({ error: 'Failed to cancel reservation.' });
+  }
+};
+
+const cancelReservationbyMod = async (req, res) => {
+  const { reservation_id } = req.params;
+
+  try {
+    // Find the reservation
+    const reservation = await Reservation.findByPk(reservation_id);
+    if (!reservation) {
+      return res.status(404).json({ error: 'Reservation not found.' });
+    }
+
+    // Update the reservation status to 'cancel' and set the cancelled_by field
+    reservation.status = 'cancelled';
+    reservation.cancelled_by = 'moderator';
+    await reservation.save();
+
+    return res.status(200).json({
+      message: 'Reservation cancelled by mod successfully.',
+      reservation,
+    });
+  } catch (error) {
+    console.error('Error cancelling reservation:', error);
+    return res.status(500).json({ error: 'Failed to cancel reservation.' });
+  }
+};
+
+module.exports = { createReservation, updateReservationStatus, 
+  updateReservationDeposit, cancelReservationbyUser, cancelReservationbyMod };
