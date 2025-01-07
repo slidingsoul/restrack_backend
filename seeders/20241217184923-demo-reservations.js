@@ -37,7 +37,7 @@ module.exports = {
         date_time: new Date(),
         table_id: 4,
         user_id: 4,  // Replace with an actual user_id
-        status: 'pending',
+        status: 'inreview',
         cancelled_by: null,
         deposited: true,
         createdAt: new Date(),

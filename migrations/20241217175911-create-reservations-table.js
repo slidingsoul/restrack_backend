@@ -37,7 +37,7 @@ module.exports = {
         }
       },
       status: {
-        type: Sequelize.ENUM('pending', 'cancelled', 'completed'),
+        type: Sequelize.ENUM('pending', 'cancelled', 'completed', 'inreview'),
         allowNull: false,
       },
       cancelled_by: {
