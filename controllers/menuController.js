@@ -4,13 +4,13 @@ const recommendMenu = async (req, res) => {
   const { menu_id } = req.params;
 
   try {
-    // Find the menu item by ID
+    
     const menu = await Menu.findByPk(menu_id);
     if (!menu) {
       return res.status(404).json({ error: 'Menu item not found.' });
     }
 
-    // Update the recommended value to true (1)
+   
     menu.recommended = true;
     await menu.save();
 
@@ -28,13 +28,13 @@ const unrecommendMenu = async (req, res) => {
   const { menu_id } = req.params;
 
   try {
-    // Find the menu item by ID
+
     const menu = await Menu.findByPk(menu_id);
     if (!menu) {
       return res.status(404).json({ error: 'Menu item not found.' });
     }
 
-    // Update the recommended value to true (1)
+
     menu.recommended = false;
     await menu.save();
 

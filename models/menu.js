@@ -56,9 +56,9 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: 'Menu', // Model name for Sequelize
-      tableName: 'Menus', // Actual table name in the database
-      timestamps: true,   // Enables createdAt and updatedAt
+      modelName: 'Menu', 
+      tableName: 'Menus', 
+      timestamps: true,   
     }
   );
 

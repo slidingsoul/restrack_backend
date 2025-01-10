@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Tables', // Ensure this matches the actual model name (case-sensitive)
+        model: 'Tables', 
         key: 'table_id',
       },
     },
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Users', // Ensure this matches the actual model name (case-sensitive)
+        model: 'Users', 
         key: 'user_id',
       },
     },
@@ -40,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    timestamps: true, // Automatically adds `createdAt` and `updatedAt`
-    tableName: 'Reservations', // Specify table name if it differs from the model name
+    timestamps: true, 
+    tableName: 'Reservations', 
   });
 
   Reservation.associate = function(models) {

@@ -8,8 +8,8 @@ const menuRoutes = require('./routes/menus')
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.json()); // Parse JSON bodies
-app.use('/api/auth', authRoutes); // Use auth routes for login, signup, logout
+app.use(bodyParser.json()); 
+app.use('/api/auth', authRoutes); 
 app.use('/api/users', userRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/menus', menuRoutes)

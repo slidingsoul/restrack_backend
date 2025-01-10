@@ -1,16 +1,15 @@
-// routes/user.js
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const { User } = require('../models');
-const authenticateToken = require('../middleware/auth'); // JWT middleware
-const { regulateTcoin } = require('../controllers/userController'); // Middleware for authentication
+const authenticateToken = require('../middleware/auth'); 
+const { regulateTcoin } = require('../controllers/userController'); 
 
 const router = express.Router();
 
-// Update user profile (PUT /api/users/me)
+
 router.put('/me', authenticateToken, async (req, res) => {
   const { name, email, telephone_number, password } = req.body;
-  const userId = req.user.user_id;  // This comes from the JWT token
+  const userId = req.user.user_id;  
 
   try {
     // Find the current user
@@ -20,7 +19,7 @@ router.put('/me', authenticateToken, async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if the email is already taken by another user (if a new email is provided)
+
     if (email && email !== user.email) {
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
@@ -28,18 +27,18 @@ router.put('/me', authenticateToken, async (req, res) => {
       }
     }
 
-    // Hash the new password if it's provided
-    let hashedPassword = user.password; // Default to the current password if not updated
+
+    let hashedPassword = user.password; 
     if (password) {
-      hashedPassword = await bcrypt.hash(password, 10); // Hash the new password
+      hashedPassword = await bcrypt.hash(password, 10); 
     }
 
-    // Update the user fields with new data
+
     const updatedUser = await user.update({
-      name: name || user.name, // Only update if a new value is provided
+      name: name || user.name, 
       email: email || user.email,
       telephone_number: telephone_number || user.telephone_number,
-      password: hashedPassword, // Updated password if provided
+      password: hashedPassword, 
     });
 
     res.status(200).json({
