@@ -2,10 +2,11 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 const authenticateToken = require('../middleware/auth'); 
-const { regulateTcoin } = require('../controllers/userController'); 
+const { getUserDetails, regulateTcoin } = require('../controllers/userController'); 
 
 const router = express.Router();
 
+router.get('/me', authenticateToken, getUserDetails);
 
 router.put('/me', authenticateToken, async (req, res) => {
   const { name, email, telephone_number, password } = req.body;
