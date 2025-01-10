@@ -1,9 +1,10 @@
 const express = require('express');
-const { recommendMenu, unrecommendMenu } = require('../controllers/menuController');
+const { recommendMenu, unrecommendMenu, getAllMenus } = require('../controllers/menuController');
 const { authenticateJWT } = require('../middleware/authenticateJWT.js'); 
 
 const router = express.Router();
 
+router.get('/', authenticateJWT, getAllMenus)
 
 router.put('/:menu_id/recommend', authenticateJWT, recommendMenu);
 
