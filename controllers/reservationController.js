@@ -38,7 +38,7 @@ async function updateReservationStatus(req, res) {
   try {
     const { reservation_id } = req.params; // Extract reservation ID from URL
     const { status } = req.body; // New status from request body
-    const validStatuses = ['pending', 'cancelled', 'completed'];
+    const validStatuses = ['pending', 'cancelled', 'completed', 'inreview'];
 
     // Validate status
     if (!validStatuses.includes(status)) {
